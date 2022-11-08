@@ -210,6 +210,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
+<section id="task-3.-tidying-data" class="level2">
+<h2 class="anchored" data-anchor-id="task-3.-tidying-data">Task 3. Tidying data</h2>
+<section id="data-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-1">Data</h3>
+<p>Dataset <code>hike_trails.csv</code> contains information about hiking routes from (Washington Trail Association)[https://www.wta.org/go-outside/hikes?b_start:int=1].</p>
+<p>Data contains the next columns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 30%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: left;">class</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Name of trail</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">location</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Location of Trail</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">length</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Length of trail (note that most have <code>miles</code> included)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gain</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Gain in elevation (Feet above sea level)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">highpoint</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Highest point in feet above sea level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rating</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">User submitted rating (out of 5)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">features</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Features</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">description</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Description of trail</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tidying-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="tidying-dataset">Tidying dataset</h3>
+<p>Create a new dataset <code>clean_hike_trails</code> with the next updates:</p>
+<ol type="1">
+<li>Convert columns <code>gain</code>, <code>highpoint</code>, <code>rating</code> to numeric values.</li>
+<li>Add new column <code>trip</code> with the type of trip from column <code>length</code> (“roundtrip”, “trails”, “one-way”).</li>
+<li>Add new column <code>length_total</code> with the route length from column <code>length</code>, considering that for “one-way” trip you must double the route length.</li>
+<li>Add new column <code>location_general</code> with location from column <code>location</code> (a part before “–”).</li>
+<li>Add column <code>id</code> with row number</li>
+</ol>
+</section>
+<section id="questioning-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="questioning-dataset">Questioning dataset</h3>
+<p><strong>Question 1.</strong> How many routes have rating more than 4.9</p>
+<p><strong>Question 2.</strong> How many routes are “Good for kids” (hint: you can use (<code>unnest</code> function)?</p>
+<p><strong>Question 3.</strong> Which unique features can routes have?</p>
+<p><strong>Question 4.</strong> What is the most common rating of a route?</p>
+<p><strong>Question 5.</strong> Your own question and answer.</p>
+</section>
+</section>
+<section id="task-4.-getting-and-clearning-data" class="level2">
+<h2 class="anchored" data-anchor-id="task-4.-getting-and-clearning-data">Task 4. Getting and Clearning Data</h2>
+<p>The data used in the task was collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:</p>
+<p>http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</p>
+<p>Files for the project are ``</p>
+<p>You goal is to prepare tidy data that can be used for later analysis.</p>
+<p>You should create one script that does the following.</p>
+<ol type="1">
+<li>Merges the training and the test sets to create one data set.</li>
+<li>Extracts only the measurements on the mean and standard deviation for each measurement.</li>
+<li>Uses descriptive activity names to name the activities in the data set</li>
+<li>Appropriately labels the data set with descriptive variable names.</li>
+<li>From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.</li>
+</ol>
+</section>
+<section id="task-5.-graphics" class="level2">
+<h2 class="anchored" data-anchor-id="task-5.-graphics">Task 5. Graphics</h2>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Fine particulate matter (PM2.5) is an ambient air pollutant for which there is strong evidence that it is harmful to human health. In the United States, the Environmental Protection Agency (EPA) is tasked with setting national ambient air quality standards for fine PM and for tracking the emissions of this pollutant into the atmosphere. Approximatly every 3 years, the EPA releases its database on emissions of PM2.5. This database is known as the National Emissions Inventory (NEI). You can read more information about the NEI at the EPA National Emissions Inventory web site.</p>
+<p>For each year and for each type of PM source, the NEI records how many tons of PM2.5 were emitted from that source over the course of the entire year. The data that you will use for this assignment are for 1999, 2002, 2005, and 2008.</p>
+<section id="data-2" class="level3">
+<h3 class="anchored" data-anchor-id="data-2">Data</h3>
+<p><strong>PM2.5 Emissions Data</strong> (<code>summarySCC_PM25.rds</code>): This file contains a data frame with all of the PM2.5 emissions data for 1999, 2002, 2005, and 2008. For each year, the table contains number of tons of PM2.5 emitted from a specific type of source for the entire year.</p>
+<ul>
+<li><strong>fips</strong>: A five-digit number (represented as a string) indicating the U.S. county</li>
+<li><strong>SCC</strong>: The name of the source as indicated by a digit string (see source code classification table)</li>
+<li><strong>Pollutant</strong>: A string indicating the pollutant</li>
+<li><strong>Emissions</strong>: Amount of PM2.5 emitted, in tons</li>
+<li><strong>type</strong>: The type of source (point, non-point, on-road, or non-road)</li>
+<li><strong>year</strong>: The year of emissions recorded</li>
+</ul>
+<p><strong>Source Classification Code Table</strong> (<code>Source_Classification_Code.rds</code>): This table provides a mapping from the SCC digit strings in the Emissions table to the actual name of the PM2.5 source. The sources are categorized in a few different ways from more general to more specific and you may choose to explore whatever categories you think are most useful. For example, source “10100101” is known as “Ext Comb /Electric Gen /Anthracite Coal /Pulverized Coal”.</p>
+<p>You can read each of the two files using the <code>readRDS()</code> function in R. For example, reading in each file can be done with the following code:</p>
+<pre><code>NEI &lt;- readRDS("summarySCC_PM25.rds")
+SCC &lt;- readRDS("Source_Classification_Code.rds")</code></pre>
+</section>
+<section id="questions" class="level3">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<p>You must address the following questions and tasks in your exploratory analysis. For each question/task you will need to make a single <strong>bar</strong> plot. You can use any plotting system in R to make your plot.</p>
+<ol type="1">
+<li>Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? Make a plot showing the <strong>total</strong> PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.</li>
+<li>Have total emissions from PM2.5 decreased in the <strong>Baltimore City</strong>, Maryland (<code>fips == "24510"</code>) from 1999 to 2008?</li>
+<li>Of the four types of sources indicated by the <code>type</code> (point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for <strong>Baltimore City</strong>? Which have seen increases in emissions from 1999–2008?</li>
+<li>Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?</li>
+<li>How have emissions from motor vehicle sources changed from 1999–2008 in <strong>Baltimore City</strong> (EI.Sector starts from “Mobile”)?</li>
+<li>Compare emissions from motor vehicle sources in Baltimore City with emissions from motor vehicle sources in <strong>Los Angeles County</strong>, California (<code>fips == "06037"</code>). Which city has seen greater changes over time in motor vehicle emissions?</li>
+</ol>
+</section>
+</section>
 
 </main>
 <!-- /main column -->
