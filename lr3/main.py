@@ -2,8 +2,7 @@ import pandas as pd
 
 
 if __name__ == '__main__':
-    df = pd.read_csv("hike_data.csv")
-    df["features"] = df["features"].astype(str)
+    df = pd.read_csv("hike_long.csv")
 
     # Tidying dataset
     print("1. Convert columns gain, highpoint, rating to numeric values.")
@@ -21,7 +20,7 @@ if __name__ == '__main__':
     print(df[["length", "length_total"]])
 
     print("\n4. Add new column location_general with location from column location (a part before “–”).")
-    df["location_general"] = df["location"].str.replace(" -.*", "")
+    df["location_general"] = df["location"].str.split(" -- ").str[0]
     print(df[["location", "location_general"]])
 
     print("\n5. Add column id with row number")
@@ -34,11 +33,9 @@ if __name__ == '__main__':
 
     print("\nQuestion 2. How many routes are “Good for kids”?")
     print(len(df[df["features"].str.contains("Good for kids")]))
-    print("Features column is empty!")
 
     print("\nQuestion 3. Which unique features can routes have?")
     print(df.drop_duplicates("features")["features"].tolist())
-    print("Features column is empty!")
 
     print("\nQuestion 4. What is the most common rating of a route?")
     print(df["rating"].value_counts().head(5))
