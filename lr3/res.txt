@@ -1,0 +1,89 @@
+C:\Users\admin\anaconda3\python.exe C:/Users/admin/Desktop/Работа/data_proc_software/lr3/main.py
+C:\Users\admin\anaconda3\lib\site-packages\pandas\core\computation\expressions.py:20: UserWarning: Pandas requires version '2.7.3' or newer of 'numexpr' (version '2.7.1' currently installed).
+  from pandas.core.computation.check import NUMEXPR_INSTALLED
+1. Convert columns gain, highpoint, rating to numeric values.
+Done by default!
+
+2. Add new column trip with the type of trip from column length (“roundtrip”, “trails”, “one-way”).
+                     length       trip
+0      2.3 miles, roundtrip  roundtrip
+1      2.3 miles, roundtrip  roundtrip
+2      2.3 miles, roundtrip  roundtrip
+3      2.3 miles, roundtrip  roundtrip
+4      2.3 miles, roundtrip  roundtrip
+...                     ...        ...
+8769  20.0 miles, roundtrip  roundtrip
+8770   8.2 miles, roundtrip  roundtrip
+8771   8.2 miles, roundtrip  roundtrip
+8772   8.2 miles, roundtrip  roundtrip
+8773   8.2 miles, roundtrip  roundtrip
+
+[8774 rows x 2 columns]
+
+3. Add new column length_total with the route length from column length, considering that for “one-way” trip you must double the route length.
+                     length  length_total
+0      2.3 miles, roundtrip           2.3
+1      2.3 miles, roundtrip           2.3
+2      2.3 miles, roundtrip           2.3
+3      2.3 miles, roundtrip           2.3
+4      2.3 miles, roundtrip           2.3
+...                     ...           ...
+8769  20.0 miles, roundtrip          20.0
+8770   8.2 miles, roundtrip           8.2
+8771   8.2 miles, roundtrip           8.2
+8772   8.2 miles, roundtrip           8.2
+8773   8.2 miles, roundtrip           8.2
+
+[8774 rows x 2 columns]
+
+4. Add new column location_general with location from column location (a part before “–”).
+                                               location         location_general
+0        Puget Sound and Islands -- Seattle-Tacoma Area  Puget Sound and Islands
+1        Puget Sound and Islands -- Seattle-Tacoma Area  Puget Sound and Islands
+2        Puget Sound and Islands -- Seattle-Tacoma Area  Puget Sound and Islands
+3        Puget Sound and Islands -- Seattle-Tacoma Area  Puget Sound and Islands
+4        Puget Sound and Islands -- Seattle-Tacoma Area  Puget Sound and Islands
+...                                                 ...                      ...
+8769  North Cascades -- North Cascades Highway - Hwy 20           North Cascades
+8770                       South Cascades -- Goat Rocks           South Cascades
+8771                       South Cascades -- Goat Rocks           South Cascades
+8772                       South Cascades -- Goat Rocks           South Cascades
+8773                       South Cascades -- Goat Rocks           South Cascades
+
+[8774 rows x 2 columns]
+
+5. Add column id with row number
+0          0
+1          1
+2          2
+3          3
+4          4
+        ...
+8769    8769
+8770    8770
+8771    8771
+8772    8772
+8773    8773
+Name: index, Length: 8774, dtype: int64
+
+Question 1. How many routes have rating more than 4.9
+318
+
+Question 2. How many routes are “Good for kids”?
+694
+
+Question 3. Which unique features can routes have?
+['Dogs allowed on leash', 'Wildlife', 'Good for kids', 'Lakes', 'Fall foliage', 'Ridges/passes', 'Established campsites', 'Mountain views', 'Old growth', 'Waterfalls', 'Wildflowers/Meadows', 'Rivers', 'Dogs not allowed', 'Coast', 'Summits']
+
+Question 4. What is the most common rating of a route?
+0.0    1152
+3.0     723
+4.0     600
+3.5     375
+5.0     318
+Name: rating, dtype: int64
+
+Question 5. How many observations (i.e. rows) are in this data frame?
+8774
+
+Process finished with exit code 0
