@@ -8,6 +8,11 @@ from tqdm import tqdm
 if __name__ == '__main__':
     pd.options.mode.chained_assignment = None
 
+    features = open("./UCI HAR Dataset/features.txt", "r").read()
+    features = features.split("\n")
+    features = [i.split() for i in features]
+    features = [i[1] for i in (features if features[-1] else features[:-1])]
+
     data = {}
     for set_name in ["test", "train"]:
         data[set_name] = {}
@@ -22,8 +27,12 @@ if __name__ == '__main__':
                 data[set_name][column_name] = text.split("\n")
                 data[set_name][column_name] = [q.split(" ") for q in data[set_name][column_name]]
                 data[set_name][column_name] = np.transpose(data[set_name][column_name])
-                data[set_name][column_name] = {column_name + "_" + str(i): v
-                                               for i, v in enumerate(data[set_name][column_name])}
+                if column_name != "X":
+                    data[set_name][column_name] = {column_name + "_" + str(i): v
+                                                   for i, v in enumerate(data[set_name][column_name])}
+                else:
+                    data[set_name][column_name] = {features[i]: v
+                                                   for i, v in enumerate(data[set_name][column_name])}
 
     test_df = [pd.DataFrame(i) for i in data["test"].values()]
     train_df = [pd.DataFrame(i) for i in data["train"].values()]
@@ -51,11 +60,7 @@ if __name__ == '__main__':
     print(df)
 
     print("\n\n2. Extracts only the measurements on the mean and standard deviation for each measurement.")
-    for i in df.keys():
-        print(i, ":", sep="")
-        print("Mean: ", df[i].mean())
-        print("Standard deviation:", df[i].std())
-        print()
+    print(df[[i for i in df.keys() if "mean()" in i or "std()" in i]])
 
     print("\n\n3. Uses descriptive activity names to name the activities in the data set")
     labels = open("./UCI HAR Dataset/activity_labels.txt").read()
